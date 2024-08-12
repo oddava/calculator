@@ -1,0 +1,183 @@
+:root {
+    --background-color: rgb(18, 18, 18);
+    --shape-left-color: linear-gradient(to right, #6A0DAD, #9e46e0);
+    --shape-right-color: linear-gradient(to right, #005bff, #009bff);
+    --button-color: #1A1A1A;
+    --button-hover-color: #1a1d25;
+    --text-color: #e3e3e3;
+    --equal-button-color: #eee;
+    --clear-button-color: #ddd;
+    --font-size: 1.1rem;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: var(--background-color);
+    font-size: var(--font-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.shape.left {
+    width: 400px;
+    height: 400px;
+    background: var(--shape-left-color);
+    border-radius: 50%;
+    position: absolute;
+    left: 30%; 
+    top: 5%;
+    animation: animateLeftShape .8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes animateLeftShape {
+    0% {
+        left: 64%; 
+        top: 94%;
+        transform: translate(-70%, -90%);
+    }
+    100% {
+        left: 30%; 
+        top: 5%;   
+    }
+}
+
+.shape.right {
+    width: 400px;
+    height: 400px;
+    background: var(--shape-right-color);
+    border-radius: 50%;
+    position: absolute;
+    right: 30%; 
+    bottom: 5%;
+    animation: animateRightShape .8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+@keyframes animateRightShape {
+    0% {
+        right: 65%;
+        bottom: 90%;
+        transform: translate(70%, 90%);
+    }
+    100% {
+        right: 30%; 
+        bottom: 5%;
+    }
+}
+
+.bg-object {
+    position: absolute;
+    border-radius: 50%;
+    width: 400px;
+    height: 400px;
+    background: red;
+}
+
+
+
+.calculator {
+    width: 400px;
+    height: 700px;
+    background: rgba(0, 0, 0, .1);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(25px);
+    border-radius: 10px;
+    animation: scaleUp .8s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+
+@keyframes scaleUp {
+    from {transform: scale(0);}
+    to {transform: scale(1);}
+}
+
+.calculator__display {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 40px 40px 0;
+}
+
+.calculator__display input {
+    background: transparent;
+    min-height: 25px;
+    border: none;
+    max-width: 80%;
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.3em;
+    word-spacing: 2px;
+    outline: none;
+}
+
+#display-calculation {
+    color: rgb(147, 147, 147);
+}
+
+#display-answer {
+    color: var(--text-color);
+    font-size: 2.2em;
+}
+
+#calculator__keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 40px;
+    gap: 15px;
+    height: 60%;
+}
+
+#calculator__keys button {
+    background: var(--button-color);
+    color: var(--text-color);
+    padding: 12px 0;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1.3em;
+}
+
+#calculator__keys button.key--equal {
+    grid-column: 4/-1;
+    grid-row: 2/6;
+    color: var(--equal-button-color) !important;
+    background: var(--button-hover-color) !important;
+}
+
+#calculator__keys button.key--clear {
+    color: var(--clear-button-color) !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .shape.left, .shape.right {
+        width: 300px;
+        height: 300px;
+    }
+    .calculator {
+        width: 350px;
+        height: 650px;
+    }
+  }
+
+@media only screen and (max-width: 450px) {
+    body {
+        width: 100%;
+        height: 100vh;
+    }
+}
